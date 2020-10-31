@@ -19,7 +19,7 @@ $ docker run -e POSTGRES_PASSWORD="contraseña" -d psql
 Para acceder a la base de datos y ejecutar comandos del script:
 
 ```sh
-$ docker exec -it "id_container"
+$ docker exec -it "id_container" bash
 $ su postgres
 $ psql -f script.sql
 ```
