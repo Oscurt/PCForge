@@ -15,7 +15,7 @@ create table Orden(
 create table Comentario(
 	id_cliente serial,
 	id_prod serial,
-	calificaion integer,
+	calificacion integer,
 	fecha date,
 	contenido varchar(150)
 );
@@ -44,9 +44,9 @@ create table Detalle(
 	numero integer
 );
 
-create tabke Categoria(
+create table Categoria(
 	id_cat serial not null primary key,
-	nombre varchar(50);
+	nombre varchar(50)
 );
 
 -- ========= Definiendo las llaves foraneas ===============
@@ -74,6 +74,7 @@ insert into Cliente(usuario, clave) values ('Benjita','321');
 insert into Cliente(usuario, clave) values ('Marcos','asd');
 insert into Cliente(usuario, clave) values ('Pipenex','hentai');
 insert into Cliente(usuario, clave) values ('Martin','bearswim');
+insert into Cliente(usuario, clave) values ('test','test');
 
 select * from cliente;
 

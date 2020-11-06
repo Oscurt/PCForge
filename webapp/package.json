@@ -1,0 +1,13 @@
+{
+    "name": "pcforge",
+    "version": "1.0.0",
+    "description": "site to comparison pc tools",
+    "author": "uwuteam",
+    "main": "dbtest.js",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "dependencies": {
+      "express": "^4.16.1"
+    }
+  }

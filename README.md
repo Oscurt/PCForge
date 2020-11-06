@@ -1,25 +1,19 @@
-El presente repositorio contiene todo lo necesario para instanciar y correr una pagina web (pern), usando contenedores.
+El presente repositorio contiene todo lo necesario para instanciar y correr la pagina web PC-FORGE.
 
 Requisitos:
 
 - Docker
+- Docker-compose
 - Git
 
 
 Guia de uso:
 
-Para montar la base de datos:
+Para montar la base de datos usaremos los siguientes comandos:
 
 ```sh
 $ git clone https://github.com/Oscurt/PCForge
-$ docker build -t psql .
-$ docker run -e POSTGRES_PASSWORD="contraseña" -d psql
+$ cd PcForge/
+$ docker-compose up --build -d
 ```
-
-Para acceder a la base de datos y ejecutar comandos del script:
-
-```sh
-$ docker exec -it "id_container" bash
-$ su postgres
-$ psql -f script.sql
-```
+IMPORTANTE: la configuracion usa el puerto 3000, 5432 y 8080.
