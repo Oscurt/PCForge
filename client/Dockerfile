@@ -9,7 +9,8 @@ COPY package*.json ./
 
 RUN npm install \
 && npm i nodemon \
-&& npm i react-script
+&& npm i react-script \
+&& npm install react-bootstrap bootstrap
 
 # If you are building your code for production
 # RUN npm ci --only=production

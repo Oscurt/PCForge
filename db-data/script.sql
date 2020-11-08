@@ -2,8 +2,9 @@
 
 create table Cliente (
 	id_cliente serial not null primary key,
-	usuario varchar(30),
-	clave varchar(30)
+	usuario varchar(30) not null,
+	clave varchar(30) not null,
+	UNIQUE(usuario)
 );
 
 create table Orden(
@@ -64,6 +65,11 @@ alter table Producto add foreign key(id_cat) references Categoria(id_cat);
 
 alter table Detalle add foreign key(id_prod) references Producto(id_prod);
 alter table Detalle add foreign key(numero) references Orden(numero);
+
+-- ========= REGLAS USUARIO ===============
+
+-- alter table Cliente ADD UNIQUE (usuario);
+-- alter table Cliente ADD UNIQUE (clave);
 
 -- ========= Insercion =========
 

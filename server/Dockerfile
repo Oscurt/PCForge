@@ -13,13 +13,13 @@ RUN npm install \
 && npm i express \
 && npm i pg \
 && npm i cors \
-&& npm i nodemon
+&& npm i -g nodemon
 # If you are building your code for production
 # RUN npm ci --only=production
 COPY . .
 # Bundle app source
 
 
-CMD [ "node", "server.js" ]
+CMD [ "nodemon", "server" ]
 
 EXPOSE 8080
