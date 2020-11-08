@@ -10,6 +10,7 @@ services:
         ports:
             - "3001:8080"
         volumes:
+            - ./server:/usr/src/app
             - /usr/src/app/node_modules
     nodeclient:
         build:

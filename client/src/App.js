@@ -1,8 +1,13 @@
-import {Fragment} from "react";
+import React from 'react';
 import './App.css';
+import _Navbar from './components/_Navbar';
 
 function App() {
-  return <Fragment>testdev del pana javo y landegod</Fragment>;
+  return (
+      <div className="App">
+        <_Navbar />
+      </div>
+  );
 }
 
 export default App;
