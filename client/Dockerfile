@@ -11,6 +11,7 @@ RUN npm install \
 && npm i nodemon \
 && npm i react-script \
 && npm i react-bootstrap \
+&& && npm i react-router-dom \
 && npm i bootstrap
 
 # If you are building your code for production
