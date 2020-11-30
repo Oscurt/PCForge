@@ -1,9 +1,12 @@
 import React from 'react';
-import data from './data';
-import Product from './components/Product';
+import { BrowserRouter, Route } from 'react-router-dom';
+import HomeVista from './Vistas/HomeVista';
+import ProdsVista from './Vistas/ProdsVista';
+import SigninVista from './Vistas/SigninVista';
 
 function App() {
   return (
+    <BrowserRouter>
     <div className="grid-container">
     <header className="row">
       <div>
@@ -16,16 +19,13 @@ function App() {
       </div>
     </header>
     <main>
-      <div>
-        <div className="row center">
-          {data.products.map((product) => (
-            <Product key={product._id} product={product}></Product>
-          ))}
-        </div>
-      </div>
+    <Route path="/product/:id" component={ProdsVista} exact></Route>
+    <Route path="/" component={HomeVista} exact></Route>
+    <Route path="/signin" component={SigninVista}></Route>
     </main>
     <footer className="row center">Los panas: @Oscurt @MrColour @Platypunk</footer>
   </div>
+  </BrowserRouter>
   );
 }
 

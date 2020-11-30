@@ -101,6 +101,15 @@ insert into Favorito(id_cliente, id_producto) values (3,3);
 
 select * from favorito;
 
+-- Insercion Categoria
+
+insert into Categoria(nombre) values ('Fuente de Poder');
+insert into Categoria(nombre) values ('Placa Madre');
+insert into Categoria(nombre) values ('Tarjeta de Video');
+insert into Categoria(nombre) values ('Memoria Ram');
+
+select * from categoria;
+
 -- Insercion Producto
 
 insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca) values (3,'GTX 1060', 10000, 'Perfecta para jugar', 1, 2, 50, 'MSI');
@@ -110,15 +119,6 @@ insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavorito
 insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca) values (1,'ROG-STRIX-750G ', 18000, 'No necesitas mas energia!', 3, 0, 75, 'ASUS');
 
 select * from producto;
-
--- Insercion Categoria
-
-insert into Categoria(nombre) values ('Fuente de Poder');
-insert into Categoria(nombre) values ('Placa Madre');
-insert into Categoria(nombre) values ('Tarjeta de Video');
-insert into Categoria(nombre) values ('Memoria Ram');
-
-select * from categoria;
 
 -- ============== Consultas =================
 

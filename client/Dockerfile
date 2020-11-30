@@ -11,8 +11,10 @@ RUN npm install \
 && npm i nodemon \
 && npm i react-script \
 && npm i react-bootstrap \
-&& && npm i react-router-dom \
-&& npm i bootstrap
+&& npm i react-router-dom \
+&& npm i bootstrap \
+&& npm i axios \
+&& npm i redux react-redux redux-thunk
 
 # If you are building your code for production
 # RUN npm ci --only=production
