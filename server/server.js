@@ -48,12 +48,18 @@ app.get('/api/profiles', async(req, res, next) =>{ // OBTIENE LISTA DE USUARIOS
   }
 });
 
-app.get('/api/verifyUser/:user', async(req, res, next) =>{ // CHECKEA SI EL USERNAME YA EXISTE
+app.post('/api/login', async(req, res, next) =>{ // CHECKEA SI EL USERNAME Y CONTRASEÑA SON CORRECTOS
   try {
-    const user = req.param('user')
-    const getUser = await pool.query("SELECT usuario FROM cliente WHERE usuario = $1::text",[user]);
+    const {usuario, clave} = req.body;
+    const getUser = await pool.query("SELECT usuario, clave FROM cliente WHERE usuario = $1::text AND clave = $2::text",[usuario, clave]);
     if(getUser.rowCount){
-      res.json(getUser.rows);
+      res.send({
+        usuario,
+        clave,
+      });
+    }
+    else{
+      res.status(404).send({ message: 'Usuario o contraseña invalida' });
     }
   } catch (err) {
     console.log(err.message);
@@ -64,11 +70,20 @@ app.post('/api/register', async(req, res) =>{  // sirve para registrar usuarios,
   try {
     const { usuario, clave } = req.body;
     if (usuario.length > 4  && clave.length > 4){
-      const newUser = await pool.query("INSERT INTO Cliente(usuario, clave) VALUES ($1::text, $2::text) RETURNING *", [usuario, clave]);
-      res.json(newUser);
+      const verify = await pool.query('SELECT usuario FROM cliente WHERE usuario = $1::text',[usuario]);
+      if (verify.rowCount){
+        res.status(404).send({ message: 'Este usuario no esta disponible' });
+      }
+      else{
+        const newUser = await pool.query("INSERT INTO Cliente(usuario, clave) VALUES ($1::text, $2::text) RETURNING *", [usuario, clave]);
+        res.send({
+          usuario,
+          clave,
+        });
+      }
     }
     else{
-      res.send("POCA SEGURIDAD MI PANA");
+      res.status(404).send({ message: 'El usuario y la contraseña deben tener mas de 4 caracteres.' });
     }
   } catch (err) {
     console.log(err.message);

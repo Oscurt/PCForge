@@ -58,13 +58,16 @@ export default function SigninScreen(props) {
         <div>
           <label />
           <button className="primary" type="submit">
-            Unirse
+            Entrar
           </button>
         </div>
         <div>
           <label />
           <div>
-            ¿Nuevo en PCForge? <Link to="/register">Crear una cuenta</Link>
+            ¿Nuevo en PCForge?{' '}
+            <Link to={`/register?redirect=${redirect}`}>
+              Crear tu cuenta
+            </Link>
           </div>
         </div>
       </form>
