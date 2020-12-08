@@ -3,10 +3,12 @@ import thunk from 'redux-thunk';
 import {
   productDetailsReducer,
   productListReducer,
+  productPopReducer,
 } from './reducers/productReducers';
 import {
   userRegisterReducer,
   userSigninReducer,
+  userDetailsReducer,
 } from './reducers/userReducers';
 
 const initialState = {
@@ -17,10 +19,12 @@ const initialState = {
   },
 };
 const reducer = combineReducers({
+  productPop: productPopReducer,
   productList: productListReducer,
   productDetails: productDetailsReducer,
   userSignin: userSigninReducer,
   userRegister: userRegisterReducer,
+  userDetails: userDetailsReducer,
 });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(

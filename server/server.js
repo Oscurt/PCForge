@@ -15,10 +15,59 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get('/api/profile/:usuario', async(req, res, next) =>{ // VER FAVORITO DE UN USUARIO
+  try {
+    const usuario = req.param('usuario');
+    const getFAV = await pool.query('SELECT * FROM producto WHERE id_prod IN (SELECT id_prod FROM favorito WHERE id_cliente = (SELECT id_cliente FROM cliente WHERE usuario = $1::text))',[usuario]);
+    res.send(getFAV.rows);
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
 app.get('/api/products', async(req, res, next) =>{ // OBTIENE TODOS LOS PRODUCTOS
   try {  
     const getAllProd = await pool.query("SELECT * FROM producto");
     res.send(getAllProd.rows);
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
+app.get('/api/pop_cat', async(req, res, next) =>{ // OBTIENE LA CATEGORIA MAS POPULAR
+  try {  
+    const getPopCat = await pool.query("SELECT * FROM categoria WHERE id_cat = (select id_cat from (select id_cat, COUNT(id_cat) AS total FROM producto GROUP BY id_cat ORDER BY total DESC LIMIT 1) AS bestCAT)");
+    res.send(getPopCat.rows);
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
+app.get('/api/pop_prod', async(req, res, next) =>{ // OBTIENE EL PRODUCTO MAS POPULAR
+  try {  
+    const best = [];
+    const getPopProd = await pool.query("SELECT * FROM producto WHERE nfavoritos = (select max(nfavoritos) from producto)");
+    if (getPopProd.rowCount){
+      best.push(getPopProd.rows[0]);
+    }
+    const getSellProd = await pool.query("SELECT * FROM producto WHERE nventas = (select max(nventas) from producto)");
+    if (getSellProd.rowCount){
+      best.push(getSellProd.rows[0]);
+    }
+    const getValProd = await pool.query("SELECT * FROM producto WHERE puntaje = (select max(puntaje) from producto)");
+    if (getValProd.rowCount){
+      best.push(getValProd.rows[0]);
+    }
+    const getComProd = await pool.query("select * from producto where id_prod = (select id_prod from (select id_prod, COUNT(id_prod) AS total FROM comentario GROUP BY id_prod ORDER BY total DESC LIMIT 1) AS mostComent)");
+    if (getComProd.rowCount){
+      best.push(getComProd.rows[0]);
+    }
+    if (best.length){
+      res.send(best);
+    }
+    else{
+      res.status(404).send({message: 'Sin datos'})
+    }
   } catch (err) {
     console.log(err.message);
   }
@@ -34,15 +83,6 @@ app.get('/api/products/:id_prod', async(req, res, next) =>{ // OBTIENE PRODUCTO
     else{
       res.status(404).send({ message: 'Product Not Found' });
     }
-  } catch (err) {
-    console.log(err.message);
-  }
-});
-
-app.get('/api/profiles', async(req, res, next) =>{ // OBTIENE LISTA DE USUARIOS
-  try {
-    const getAllUsers = await pool.query("SELECT usuario FROM cliente");
-    res.json(getAllUsers.rows);
   } catch (err) {
     console.log(err.message);
   }

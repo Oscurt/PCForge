@@ -7,12 +7,6 @@ create table Cliente (
 	UNIQUE(usuario)
 );
 
-create table Orden(
-	numero integer not null primary key,
-	id_cliente serial,
-	id_det serial
-);
-
 create table Comentario(
 	id_cliente serial,
 	id_prod serial,
@@ -23,7 +17,7 @@ create table Comentario(
 
 create table Favorito(
 	id_cliente serial,
-	id_producto serial
+	id_prod serial
 );
 
 create table Producto(
@@ -35,14 +29,8 @@ create table Producto(
 	nventas integer,
 	nfavoritos integer,
 	puntaje integer,
-	marca varchar(50)
-);
-
-
-create table Detalle(
-	id_prod serial,
-	id_det serial not null primary key,
-	numero integer
+	marca varchar(50),
+	image varchar(50)
 );
 
 create table Categoria(
@@ -52,19 +40,14 @@ create table Categoria(
 
 -- ========= Definiendo las llaves foraneas ===============
 
-alter table Orden add foreign key(id_cliente) references Cliente(id_cliente);
-alter table Orden add foreign key(id_det) references Detalle(id_det);
-
 alter table Comentario add foreign key(id_cliente) references Cliente(id_cliente);
 alter table Comentario add foreign key(id_prod) references Producto(id_prod);
 
 alter table Favorito add foreign key(id_cliente) references Cliente(id_cliente);
-alter table Favorito add foreign key(id_producto) references Producto(id_prod);
+alter table Favorito add foreign key(id_prod) references Producto(id_prod);
 
 alter table Producto add foreign key(id_cat) references Categoria(id_cat);
 
-alter table Detalle add foreign key(id_prod) references Producto(id_prod);
-alter table Detalle add foreign key(numero) references Orden(numero);
 
 -- ========= REGLAS USUARIO ===============
 
@@ -84,23 +67,6 @@ insert into Cliente(usuario, clave) values ('test','test');
 
 select * from cliente;
 
--- Insercion Comentario
-
-insert into Comentario(id_cliente, id_prod, calificacion, fecha, contenido) values (1,2,7,'23-10-20','Me gusto bastante, ahora puedo ir a matar a la alianza como se debe');
-insert into Comentario(id_cliente, id_prod, calificacion, fecha, contenido) values (3,1,8,'23-10-20','Buenisimo, ya puedo matar a esos de la horda como se debe');
-insert into Comentario(id_cliente, id_prod, calificacion, fecha, contenido) values (2,1,9,'23-10-20','Alfin jugare como un pandita neutral! :3');
-
-select * from comentario;
-
--- Insercion Favorito
-
-insert into Favorito(id_cliente, id_producto) values (1,2);
-insert into Favorito(id_cliente, id_producto) values (3,1);
-insert into Favorito(id_cliente, id_producto) values (2,1);
-insert into Favorito(id_cliente, id_producto) values (3,3);
-
-select * from favorito;
-
 -- Insercion Categoria
 
 insert into Categoria(nombre) values ('Fuente de Poder');
@@ -112,13 +78,30 @@ select * from categoria;
 
 -- Insercion Producto
 
-insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca) values (3,'GTX 1060', 10000, 'Perfecta para jugar', 1, 2, 50, 'MSI');
-insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca) values (3,'RTX 1060', 20000, 'Ideal para Ray-Tracing', 0, 1, 60, 'MSI');
-insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca) values (2,'Z390-A PRO', 5000, 'Perfecta para tu PC!', 1, 1, 70, 'MSI');
-insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca) values (3,'GT 1030', 7000, 'Buenisimo para jugar Maicra', 0, 0, 30, 'ASUS');
-insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca) values (1,'ROG-STRIX-750G ', 18000, 'No necesitas mas energia!', 3, 0, 75, 'ASUS');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (3,'GTX 1060', 10000, 'Perfecta para jugar', 1, 2, 50, 'MSI','images/p1.jpg');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (3,'RTX 1060', 20000, 'Ideal para Ray-Tracing', 0, 1, 60, 'MSI','images/p2.jpg');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (2,'Z390-A PRO', 5000, 'Perfecta para tu PC!', 1, 1, 70, 'MSI','images/p3.jpg');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (3,'GT 1030', 7000, 'Buenisimo para jugar Maicra', 0, 0, 30, 'ASUS','images/p4.jpg');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (1,'ROG-STRIX-750G ', 18000, 'No necesitas mas energia!', 3, 0, 75, 'ASUS','images/p5.jpg');
 
 select * from producto;
+
+-- Insercion Comentario
+
+insert into Comentario(id_cliente, id_prod, calificacion, fecha, contenido) values (1,2,7,'2020-12-01','Me gusto bastante, ahora puedo ir a matar a la alianza como se debe');
+insert into Comentario(id_cliente, id_prod, calificacion, fecha, contenido) values (3,1,8,'2020-12-20','Buenisimo, ya puedo matar a esos de la horda como se debe');
+insert into Comentario(id_cliente, id_prod, calificacion, fecha, contenido) values (2,1,9,'2020-12-20','Alfin jugare como un pandita neutral! :3');
+
+select * from comentario;
+
+-- Insercion Favorito
+
+insert into Favorito(id_cliente, id_prod) values (1,2);
+insert into Favorito(id_cliente, id_prod) values (3,1);
+insert into Favorito(id_cliente, id_prod) values (2,1);
+insert into Favorito(id_cliente, id_prod) values (3,3);
+
+select * from favorito;
 
 -- ============== Consultas =================
 

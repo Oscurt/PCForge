@@ -5,8 +5,7 @@ import HomeVista from './Vistas/HomeVista';
 import ProdsVista from './Vistas/ProdsVista';
 import SigninVista from './Vistas/SigninVista';
 import RegisterScreen from './Vistas/RegistroVista';
-import SearchBox from './components/SearchBox';
-import SearchScreen from './Vistas/BusquedaVista';
+import ProfileVista from './Vistas/ProfileVista';
 import { signout } from './actions/userActions';
 
 function App() {
@@ -26,41 +25,35 @@ function App() {
           </Link>
       </div>
       <div>
-            <Route
-              render={({ history }) => (
-                <SearchBox history={history}></SearchBox>
-              )}
-            ></Route>
-          </div>
-      <div>
       {userInfo ? (
               <div className="dropdown">
-                <Link to="#">
+                <Link to="/#">
                   {userInfo.usuario} <i className="fa fa-caret-down"></i>{' '}
                 </Link>
                 <ul className="dropdown-content">
+                <li>
+                    <Link to={`/profile/${userInfo.usuario}`}>
+                      Perfil
+                    </Link>
+                  </li>
                   <li>
                     <Link to="#signout" onClick={signoutHandler}>
-                      Sign Out
+                      Salir
                     </Link>
                   </li>
                 </ul>
               </div>
             ) : (
-              <Link to="/signin">Sign In</Link>
+              <Link to="/signin">Ingresar</Link>
             )}
-          </div>
+        </div>
     </header>
     <main>
+    <Route path="/profile/:usuario" component={ProfileVista}></Route>
     <Route path="/product/:id" component={ProdsVista} exact></Route>
     <Route path="/" component={HomeVista} exact></Route>
     <Route path="/signin" component={SigninVista}></Route>
     <Route path="/register" component={RegisterScreen}></Route>
-    <Route
-            path="/search/name/:name?"
-            component={SearchScreen}
-            exact
-          ></Route>
     </main>
     <footer className="row center">Los panas: @Oscurt @MrColour @Platypunk</footer>
   </div>

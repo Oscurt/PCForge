@@ -7,6 +7,9 @@ import {
   USER_SIGNIN_REQUEST,
   USER_SIGNIN_SUCCESS,
   USER_SIGNOUT,
+  USER_DETAILS_FAIL,
+  USER_DETAILS_REQUEST,
+  USER_DETAILS_SUCCESS,
 } from '../constants/userConstants';
 
 export const register = (usuario, clave) => async (dispatch) => {
@@ -51,4 +54,19 @@ export const signin = (usuario, clave) => async (dispatch) => {
 export const signout = () => (dispatch) => {
   localStorage.removeItem('userInfo');
   dispatch({ type: USER_SIGNOUT });
+};
+
+export const detailsUser = (usuario) => async (dispatch) => {
+  dispatch({ type: USER_DETAILS_REQUEST, payload: usuario });
+  try {
+    Axios.defaults.baseURL = 'http://localhost:3001/';
+    const { data } = await Axios.get(`/api/profile/${usuario}`);
+    dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: USER_DETAILS_FAIL, payload: message });
+  }
 };

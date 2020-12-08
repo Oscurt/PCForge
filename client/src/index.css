@@ -77,6 +77,12 @@ button:hover {
 button.primary {
   background-color: #f0c040;
 }
+button.second {
+  background-color: #1eff00;
+}
+button.third {
+  background-color: #ff0000;
+}
 button.block {
   width: 100%;
 }
@@ -204,10 +210,8 @@ img.large {
 .loading {
   display: block !important;
 }
-
-/* Search */
 .search button {
-  border-radius: 5rem 5rem 5rem 5rem;
+  border-radius: 0 0.5rem 0.5rem 0;
   border-right: none;
   margin-right: 0.5rem;
 }

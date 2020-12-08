@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { detailsProduct } from '../actions/productActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import Rating from '../components/Rating';
 
 export default function ProductScreen(props) {
   const dispatch = useDispatch();
@@ -28,26 +27,21 @@ export default function ProductScreen(props) {
             <div className="col-2">
               <img
                 className="large"
-                src={product[0].image}
+                src={"../"+ product[0].image}
                 alt={product[0].nombre}
               ></img>
             </div>
             <div className="col-1">
               <ul>
                 <li>
-                  <h1>{product[0].nombre}</h1>
-                </li>
-                <li>
-                  <Rating
-                    rating={product[0].nfavoritos}
-                    numReviews={product[0].nventas}
-                  ></Rating>
+                  <h1>{product[0].marca + " " + product[0].nombre}</h1>
                 </li>
                 <li>Precio : ${product[0].precio}</li>
                 <li>
-                  Detalles:
+                  Caracteristicas:
                   <p>{product[0].caracteristicas}</p>
                 </li>
+                <li>Puntaje : {product[0].puntaje} <span className="fa fa-star-o"></span></li>
               </ul>
             </div>
             <div className="col-1">
@@ -58,10 +52,26 @@ export default function ProductScreen(props) {
                       <div>Precio</div>
                       <div className="price">${product[0].precio}</div>
                     </div>
+                    <div className="row">
+                      <div>Likes</div>
+                      <div className="price">{product[0].nfavoritos}</div>
+                    </div>
+                    <div className="row">
+                      <div>Ventas</div>
+                      <div className="price">{product[0].nventas}</div>
+                    </div>
+                    <div>
+                    </div>
                   </li>
                 </ul>
               </div>
             </div>
+          </div>
+          <div>
+            <h2 id="reviews">Comentarios</h2>
+            <ul>
+              
+            </ul>
           </div>
         </div>
         )}

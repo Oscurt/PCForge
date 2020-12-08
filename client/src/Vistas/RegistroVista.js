@@ -9,7 +9,6 @@ export default function RegisterScreen(props) {
   const [usuario, setName] = useState('');
   const [clave, setPassword] = useState('');
   const [confirmClave, setConfirmPassword] = useState('');
-
   const redirect = props.location.search
     ? props.location.search.split('=')[1]
     : '/';
