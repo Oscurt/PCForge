@@ -9,6 +9,9 @@ import {
   POPULAR_PRODUCT_DETAILS_FAIL,
   POPULAR_PRODUCT_DETAILS_REQUEST,
   POPULAR_PRODUCT_DETAILS_SUCCESS,
+  COMENTARIO_PRODUCT_DETAILS_FAIL,
+  COMENTARIO_PRODUCT_DETAILS_REQUEST,
+  COMENTARIO_PRODUCT_DETAILS_SUCCESS,
 } from '../constants/productConstants';
 
 export const listProducts = () => async (dispatch) => {
@@ -54,6 +57,23 @@ export const popularProduct = () => async (dispatch) => {
       type: POPULAR_PRODUCT_DETAILS_FAIL,
       payload:
         error.message
+    });
+  }
+};
+
+export const commentProduct = (productId) => async (dispatch) => {
+  dispatch({ type: COMENTARIO_PRODUCT_DETAILS_REQUEST, payload: productId });
+  try {
+    Axios.defaults.baseURL = 'http://localhost:3001/';
+    const { data } = await Axios.get(`/api/comentario/${productId}`);
+    dispatch({ type: COMENTARIO_PRODUCT_DETAILS_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: COMENTARIO_PRODUCT_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     });
   }
 };

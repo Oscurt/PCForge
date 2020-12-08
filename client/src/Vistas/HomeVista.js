@@ -11,7 +11,6 @@ export default function HomeVista(){
     const { loading, error, products } = productList;
     const productPop = useSelector((state) => state.productPop);
     const { loading: loadingPop, error: errorPop, products: prodPop,} = productPop;
-    console.log(products);
     useEffect(() => {
         dispatch(listProducts());
         dispatch(popularProduct());

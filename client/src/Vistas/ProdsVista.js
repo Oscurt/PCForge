@@ -1,18 +1,21 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { detailsProduct } from '../actions/productActions';
+import { detailsProduct, commentProduct } from '../actions/productActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import Comentario from '../components/Comentario';
 
 export default function ProductScreen(props) {
   const dispatch = useDispatch();
   const productId = props.match.params.id;
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
-
+  const productComment = useSelector((state) => state.productComment);
+  const { loading: loadingCom, error: errorCom, comment: prodCom} = productComment;
   useEffect(() => {
     dispatch(detailsProduct(productId));
+    dispatch(commentProduct(productId));
   }, [dispatch, productId]);
   return (
     <div>
@@ -69,9 +72,21 @@ export default function ProductScreen(props) {
           </div>
           <div>
             <h2 id="reviews">Comentarios</h2>
-            <ul>
-              
+            <div>
+              <ul>
+            {loadingCom? (
+                <LoadingBox></LoadingBox>
+            ) : errorCom ? (
+                <MessageBox>{errorCom}</MessageBox>
+            ) : (
+                <li>
+                  {prodCom.map((comment) =>
+                      <Comentario key={comment.id_prod} comment={comment}></Comentario>
+                  )}
+                </li>
+            )}
             </ul>
+            </div>
           </div>
         </div>
         )}

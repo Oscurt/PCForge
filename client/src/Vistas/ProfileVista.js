@@ -12,7 +12,6 @@ export default function ProfileScreen(props) {
   useEffect(() => {
     dispatch(detailsUser(props.match.params.usuario));
   }, [dispatch, props.match.params.usuario]);
-  console.log(user);
   return (
     <div>
         <h2>Favoritos</h2>

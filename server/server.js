@@ -15,6 +15,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get('/api/getUsuario/:id_cliente', async(req, res, next) =>{ // VER FAVORITO DE UN USUARIO
+  try {
+    const id_cliente = req.param('id_cliente');
+    const getUsuario = await pool.query('SELECT usuario FROM cliente WHERE id_cliente = $1',[id_cliente]);
+    res.send(getUsuario.rows);
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
 app.get('/api/profile/:usuario', async(req, res, next) =>{ // VER FAVORITO DE UN USUARIO
   try {
     const usuario = req.param('usuario');
@@ -82,6 +92,21 @@ app.get('/api/products/:id_prod', async(req, res, next) =>{ // OBTIENE PRODUCTO
     }
     else{
       res.status(404).send({ message: 'Product Not Found' });
+    }
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
+app.get('/api/comentario/:id_prod', async(req, res, next) =>{ // OBTIENE PRODUCTO
+  try {
+    const id_prod = req.param('id_prod');
+    const getProd = await pool.query("select comentario.*, cliente.usuario, cliente.id_cliente from comentario, cliente where cliente.id_cliente = comentario.id_cliente and id_prod = $1",[id_prod]);
+    if (getProd.rowCount){
+      res.send(getProd.rows);
+    }
+    else{
+      res.status(404).send({ message: 'AUN NO COMENTADO' });
     }
   } catch (err) {
     console.log(err.message);
