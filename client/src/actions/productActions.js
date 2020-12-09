@@ -12,6 +12,12 @@ import {
   COMENTARIO_PRODUCT_DETAILS_FAIL,
   COMENTARIO_PRODUCT_DETAILS_REQUEST,
   COMENTARIO_PRODUCT_DETAILS_SUCCESS,
+  PRODUCT_CATEGORY_LIST_SUCCESS,
+  PRODUCT_CATEGORY_LIST_REQUEST,
+  PRODUCT_CATEGORY_LIST_FAIL,
+  PROD_CATEGORY_LIST_SUCCESS,
+  PROD_CATEGORY_LIST_REQUEST,
+  PROD_CATEGORY_LIST_FAIL,
 } from '../constants/productConstants';
 
 export const listProducts = () => async (dispatch) => {
@@ -75,5 +81,30 @@ export const commentProduct = (productId) => async (dispatch) => {
           ? error.response.data.message
           : error.message,
     });
+  }
+};
+
+export const listProductCategories = () => async (dispatch) => {
+  dispatch({
+    type: PRODUCT_CATEGORY_LIST_REQUEST,
+  });
+  try {
+    const { data } = await Axios.get(`/api/cats`);
+    dispatch({ type: PRODUCT_CATEGORY_LIST_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: PRODUCT_CATEGORY_LIST_FAIL, payload: error.message });
+  }
+};
+
+export const catlistProducts = (catId) => async (dispatch) => {
+  dispatch({
+    type: PROD_CATEGORY_LIST_REQUEST,
+  });
+  try {
+    Axios.defaults.baseURL = 'http://localhost:3001/';
+    const { data } = await Axios.get(`/api/productscat/${catId}`);
+    dispatch({ type: PROD_CATEGORY_LIST_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: PROD_CATEGORY_LIST_FAIL, payload: error.message });
   }
 };

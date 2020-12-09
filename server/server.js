@@ -15,7 +15,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/api/getUsuario/:id_cliente', async(req, res, next) =>{ // VER FAVORITO DE UN USUARIO
+app.get('/api/getUsuario/:id_cliente', async(req, res, next) =>{ // Obtener el usuario en base al id
   try {
     const id_cliente = req.param('id_cliente');
     const getUsuario = await pool.query('SELECT usuario FROM cliente WHERE id_cliente = $1',[id_cliente]);
@@ -39,6 +39,15 @@ app.get('/api/products', async(req, res, next) =>{ // OBTIENE TODOS LOS PRODUCTO
   try {  
     const getAllProd = await pool.query("SELECT * FROM producto");
     res.send(getAllProd.rows);
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
+app.get('/api/cats', async(req, res, next) =>{ // OBTIENE TODOS LOS PRODUCTOS
+  try {  
+    const getAllCats = await pool.query("SELECT * FROM categoria");
+    res.send(getAllCats.rows);
   } catch (err) {
     console.log(err.message);
   }
@@ -87,6 +96,21 @@ app.get('/api/products/:id_prod', async(req, res, next) =>{ // OBTIENE PRODUCTO
   try {
     const id_prod = req.param('id_prod');
     const getProd = await pool.query("SELECT * FROM producto WHERE id_prod = $1",[id_prod]);
+    if (getProd.rowCount){
+      res.send(getProd.rows);
+    }
+    else{
+      res.status(404).send({ message: 'Product Not Found' });
+    }
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
+app.get('/api/productscat/:id_cat', async(req, res, next) =>{ // OBTIENE PRODUCTO
+  try {
+    const id_cat = req.param('id_cat');
+    const getProd = await pool.query("select producto.*, categoria.id_cat, categoria.nombre as catname from producto, categoria where producto.id_cat = $1 and producto.id_cat = categoria.id_cat",[id_cat]);
     if (getProd.rowCount){
       res.send(getProd.rows);
     }
