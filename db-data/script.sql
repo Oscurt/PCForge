@@ -58,14 +58,13 @@ alter table Producto add foreign key(id_cat) references Categoria(id_cat);
 
 -- Insercion Cliente
 
-insert into Cliente(usuario, clave) values ('Jordi','123');
-insert into Cliente(usuario, clave) values ('Benjita','321');
-insert into Cliente(usuario, clave) values ('Marcos','asd');
+insert into Cliente(usuario, clave) values ('Jordi','12345');
+insert into Cliente(usuario, clave) values ('Benjita','54321');
+insert into Cliente(usuario, clave) values ('Marcos','asdef');
 insert into Cliente(usuario, clave) values ('Pipenex','hentai');
 insert into Cliente(usuario, clave) values ('Martin','bearswim');
-insert into Cliente(usuario, clave) values ('test','test');
+insert into Cliente(usuario, clave) values ('tests','tests');
 
-select * from cliente;
 
 -- Insercion Categoria
 
@@ -73,26 +72,53 @@ insert into Categoria(nombre) values ('Fuente de Poder');
 insert into Categoria(nombre) values ('Placa Madre');
 insert into Categoria(nombre) values ('Tarjeta de Video');
 insert into Categoria(nombre) values ('Memoria Ram');
+insert into Categoria(nombre) values ('Perifericos');
+insert into Categoria(nombre) values ('Procesador');
 
-select * from categoria;
 
 -- Insercion Producto
 
-insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (3,'GTX 1060', 10000, 'Perfecta para jugar', 1, 2, 50, 'MSI','images/p1.jpg');
-insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (3,'RTX 1060', 20000, 'Ideal para Ray-Tracing', 0, 1, 60, 'MSI','images/p2.jpg');
-insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (2,'Z390-A PRO', 5000, 'Perfecta para tu PC!', 1, 1, 70, 'MSI','images/p3.jpg');
-insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (3,'GT 1030', 7000, 'Buenisimo para jugar Maicra', 0, 0, 30, 'ASUS','images/p4.jpg');
-insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (1,'ROG-STRIX-750G ', 18000, 'No necesitas mas energia!', 3, 0, 75, 'ASUS','images/p5.jpg');
-
-select * from producto;
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (3,'GTX 1060', 10000, 'Perfecta para jugar', 1, 2, 50, 'MSI','images/p1.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (3,'RTX 2060', 20000, 'Ideal para Ray-Tracing', 0, 1, 60, 'MSI','images/p2.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (2,'Z390-A PRO', 5000, 'Perfecta para tu PC!', 1, 1, 70, 'MSI','images/p3.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (3,'GT 1030', 7000, 'Buenisimo para jugar Maicra', 0, 0, 30, 'ASUS','images/p4.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (1,'ROG-STRIX-750G ', 18000, 'No necesitas mas energia!', 3, 0, 75, 'ASUS','images/p5.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (4,'Kingston HyperX Predator RGB',55000, 'Nunca necesitaras mas!', 2,5,70,'Kingston','images/p6.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (5,'Razer Viper Ultimate', 5000, 'Perfecto en presicion', 0,4, 60, 'RAZER', 'images/p7.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (5, 'Razer Huntsman Elite', 6000, 'Teclado Mecanico perfecto!', 2, 3, 80, 'RAZER', 'images/p8.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (5, 'Logitech G935 Wireless 7.1', 4500, 'Vive el Surround con Wireless', 1, 1, 90, 'Logitech', 'images/p9.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (5, 'ASUS ROG Strix XG49VQ', 10000, 'Que mas se puede pedir?!', 0, 5, 85, 'ASUS', 'images/p10.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (6, 'Intel Core i9-9960X', 50000, 'Renderiza hasta peliculas!', 0, 4, 90, 'Intel', 'images/p11.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (6, 'AMD Ryzen Threadripper 3990X', 100000, 'Renderiza hasta la vida real!', 0, 15, 91, 'AMD', 'images/p12.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (6, 'Intel Celeron G1820', 100, 'El procesador de una tostadora', 2, 0, 10, 'Intel', 'images/p13.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (4,'CT8G4DFS824A', 30000, 'Rum Rum velocidad por monton', 8, 0, 60, 'Crucial','images/p14.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (4,'HyperX Fury RGB HX430C15FB3A/8', 35000, 'Rum Rum velocidad por mas aun monton', 2, 9, 89, 'Kingston','images/p15.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (2,'F1A75-M LE', 5000, 'sin RGB asi que no da fps', 0, 0, 47, 'Asus','images/p16.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (2,'B450M', 70000, 'Tiene un bonito diseño, asi que debe de ser buena... quizas', 10, 6, 91, 'Gigabyte','images/p17.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (1,'RX-600AC-V ', 60000, '600W con un certificado 80plus, ay papa que maquinola', 0, 0, 54, 'Raidmax','images/p18.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (1,'SuperNOVA 850 GA', 120000, '850W con un certificado 80plus GOLD, si quieres poner algo bueno esta es la eleccion', 5, 4, 90, 'EVGA','images/p19.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (3,'RTX 3090', 2000000, 'Apenas le corre el Maicra', 0, 0, 1, 'MSI','images/p20.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (2,'A520M S2H', 70000, 'No tiene rgb, pero eso no quita que se vea bien', 0, 3, 87, 'Gigabyte','images/p27.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (2,'H110M PRO-VH', 70000, 'Mas barato que el kilo de palta', 3, 5, 65, 'MSI','images/p26.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (1,'GP-650', 9049, 'Le podria dar energia a un refrigerador', 3, 2, 51, 'Gamemax','images/p25.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (1,'PSAZ-650W', 200, '650W a tan poca plata que se podria decir que es un robo', 4, 4, 69, 'Azza','images/p24.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (3,'RX 5600 XT', 203700, 'Ropita, pantalon, zapatooooo', 4, 10, 82, 'MSI','images/p23.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (3,'RX 5700 XT', 500000, 'Buenarda. QUE ES MARTES CHAVALES', 12, 6, 90, 'ASRock','images/p22.png');
+insert into Producto(id_cat, nombre, precio, caracteristicas, nventas, nfavoritos, puntaje, marca, image) values (3,'RX 5700 XT', 400000, 'Buenarda. QUE ES VIERNES CHAVALES', 10, 4, 94, 'MSI','images/p21.png');
 
 -- Insercion Comentario
 
-insert into Comentario(id_cliente, id_prod, calificacion, fecha, contenido) values (1,2,7,'2020-12-01','Me gusto bastante, ahora puedo ir a matar a la alianza como se debe');
+insert into Comentario(id_cliente, id_prod, calificacion, fecha, contenido) values (1,27,7,'2020-12-01','Me gusto bastante, ahora puedo ir a matar a la alianza como se debe');
 insert into Comentario(id_cliente, id_prod, calificacion, fecha, contenido) values (3,1,8,'2020-12-20','Buenisimo, ya puedo matar a esos de la horda como se debe');
 insert into Comentario(id_cliente, id_prod, calificacion, fecha, contenido) values (2,1,9,'2020-12-20','Alfin jugare como un pandita neutral! :3');
 
-select * from comentario;
+insert into Comentario(id_cliente, id_prod, calificacion, fecha, contenido) values (1,27,7,'2020-12-01','Me gusto bastante, ahora puedo ir a matar a la alianza como se debe');
+insert into Comentario(id_cliente, id_prod, calificacion, fecha, contenido) values (3,26,8,'2020-12-20','Buenisimo, ya puedo matar a esos de la horda como se debe');
+insert into Comentario(id_cliente, id_prod, calificacion, fecha, contenido) values (2,26,9,'2020-12-20','Alfin jugare como un pandita neutral! :3');
+
+insert into Comentario(id_cliente, id_prod, calificacion, fecha, contenido) values (5,1,7,'2020-12-01','CHAVALEE QUE ES VIERNES');
+insert into Comentario(id_cliente, id_prod, calificacion, fecha, contenido) values (3,12,8,'2020-12-20','Buenisimo, ya puedo matar a esos de la horda como se debe');
+insert into Comentario(id_cliente, id_prod, calificacion, fecha, contenido) values (2,12,9,'2020-12-20','Alfin jugare como un pandita neutral! :3');
 
 -- Insercion Favorito
 
@@ -101,87 +127,3 @@ insert into Favorito(id_cliente, id_prod) values (3,1);
 insert into Favorito(id_cliente, id_prod) values (2,1);
 insert into Favorito(id_cliente, id_prod) values (3,3);
 
-select * from favorito;
-
--- ============== Consultas =================
-
--- Ver Lista de usuarios
-
-select usuario 
-from cliente;
-
--- Ver los favoritos de otros usuarios
-
-select p.nombre
-from Producto p, Favorito f, Cliente c
-where c.usuario = 'Marcos' and c.id_cliente = f.id_cliente and f.id_producto = p.id_prod;
--- En este caso se buscan los favoritos del usuario 'Marcos'
-
-
--- Producto que mas gente ha puesto en favoritos
-
-select nombre
-from Producto
-where nfavoritos = (select max(nfavoritos) from Producto);
-
--- Comparar Puntaje de 2 componentes por Nombre de producto (Deben ser de misma categoria)
-
-select nombre, puntaje
-from Producto
-where ( nombre = 'GTX 1060' or nombre = 'RTX 2060') and ((select id_cat from producto where nombre = 'GTX 1060') = (select id_cat from producto where nombre = 'RTX 2060'));
--- En este ejemplo se compara la 'GTX 1060' con la 'RTX 2060' , en caso de que los productos no tengan la misma categoria no retorna nada
-
-
--- Buscar producto con solo Cierta parte del nombre a medida que se escribe
-
-select nombre
-from producto
-where nombre like('GT%');
--- En este caso se comienza a escribir 'GT' , como resultado a la 'GTX 1060' y la 'GT 1030'
-
---Comparar Precios de componentes
-select nombre, precio
-from producto
-where nombre = 'GTX 1060' or nombre = 'RTX 2060';
--- En este caso se usaron la 'GTX 1060' y la 'RTX 2060' como referencias
-
--- Filtros por Precio o Marca
-
--- Existen 3 casos, que coloque limite de precios, de marca o ambos, esto lo elige el sistema que accede a la base de datos
-
--- Caso Solo Marca
-select nombre, marca, precio
-from producto
-where marca = 'MSI';
-
--- Caso por Precios
-select nombre, marca, precio
-from producto
-where precio >=(0) and precio <=(15000); 
-
--- Ambos Casos
-select nombre, marca, precio
-from producto
-where (precio >=(0) and precio <= (15000)) and marca = 'MSI';
-
-
-
--- Producto mas vendido por categoria (solo uno)
-select distinct on (p.id_cat) 
-	c.nombre as categoria, p.nombre, p.marca, p.precio
-from producto p, categoria c
-where c.id_cat = p.id_cat
-order by p.id_cat;
-
--- Categoria mas relevante ( Mayor numero de favoritos )
-select max(t.nombre)
-from (select c.nombre, sum(p.nfavoritos) sumfav
-	 from categoria c
-	 join producto p on c.id_cat = p.id_cat
-	 group by c.nombre) t;
-
--- Filtrar comentarios por los mas populares ( Las mejores calificadas )
-select cl.usuario, p.nombre, co.calificacion, co.fecha, co.contenido
-from cliente cl, producto p, comentario co
-where cl.id_cliente = co.id_cliente and co.id_prod = p.id_prod
-order by co.calificacion DESC;
