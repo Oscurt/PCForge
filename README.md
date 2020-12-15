@@ -29,4 +29,4 @@ En el apartado subnet saldra la ip de "web", debemos usar todos los digitos meno
 $ docker-compose up --build -d
 ```
 
-IMPORTANTE: la configuracion usa el puerto 3000 (sitio web), 3001 (servidor), 5432 (postgres) y 8080 (pgadmin).
+IMPORTANTE: la configuracion usa el puerto 80 (sitio web), 3001 (servidor), 5432 (postgres) y 8080 (pgadmin).
